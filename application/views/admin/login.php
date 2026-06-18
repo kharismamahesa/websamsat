@@ -42,14 +42,14 @@
 
                                     <form class="user" id="login-form">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
+                                            <input type="text" class="form-control form-control-user" style="border-radius: 5px;"
                                                 id="username" name="username" placeholder="Masukkan Username..." required autofocus>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" class="form-control form-control-user" style="border-radius: 5px;"
                                                 id="password" name="password" placeholder="Password" required>
                                         </div>
-                                        <button type="submit" class="btn btn-success btn-user btn-block font-weight-bold" id="btn-submit">
+                                        <button type="submit" class="btn btn-success btn-user btn-block font-weight-bold" style="border-radius: 5px;" id="btn-submit">
                                             <span class="spinner-border spinner-border-sm d-none mr-2" role="status" aria-hidden="true" id="submit-spinner"></span>
                                             Masuk
                                         </button>
