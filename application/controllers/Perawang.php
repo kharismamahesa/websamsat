@@ -20,6 +20,6 @@ class Perawang extends CI_Controller
 			// 'getallberita' => $this->model_samsat_berita->getAllbyKantor(3991),
 		);
 		$this->load->view('perawang/header', $data);
-		$this->load->view('perawang/halamanutama', $data);
+		// $this->load->view('perawang/halamanutama', $data);
 	}
 }

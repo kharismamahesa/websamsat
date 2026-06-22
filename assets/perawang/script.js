@@ -1,74 +1,70 @@
-/**
- * Script untuk Dashboard UPT Pengelolaan Pendapatan Perawang
- * Kompatibel dengan Vanilla JS (Tanpa JQuery/Framework tambahan)
- */
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ==========================================
-    // 1. ANIMATION SCROLL (FADE IN REGISTRATION)
-    // ==========================================
-    const fadeSections = document.querySelectorAll(".section-fade");
-
-    const observerOptions = {
-        root: null, // Menggunakan viewport browser
-        threshold: 0.1, // Element terpicu jika 10% masuk layar
-        rootMargin: "0px 0px -50px 0px" // Triger sedikit lebih cepat sebelum masuk penuh
-    };
-
-    const sectionObserver = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                // Unobserve jika ingin animasi hanya berjalan satu kali saja saat scroll down
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    fadeSections.forEach(section => {
-        sectionObserver.observe(section);
+    // 1. Inisialisasi Pustaka Animasi AOS (Animate on Scroll)
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
     });
 
+    // 2. Efek Transisi Navbar saat Scroll Layar
+    const navbar = document.querySelector('.dynamic-navbar');
 
-    // ==========================================
-    // 2. FORM VALIDATION & HANDLING ASPIRASI
-    // ==========================================
-    const formKritikSaran = document.getElementById("formKritikSaran");
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
 
-    if (formKritikSaran) {
-        formKritikSaran.addEventListener("submit", function (e) {
-            e.preventDefault(); // Menahan reload halaman standar browser
+    // 3. Penanganan Pengiriman Form Kritik & Saran (Feedback)
+    const feedbackForm = document.getElementById('feedbackForm');
 
-            // Simulasi pengambilan data form
-            const nama = this.querySelector('input[type="text"]').value;
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Mengambil data input
+            const name = this.querySelector('input[type="text"]').value;
             const email = this.querySelector('input[type="email"]').value;
-            const pesan = this.querySelector('textarea').value;
+            const message = this.querySelector('textarea').value;
 
-            // Logik / Integrasi AJAX CodeIgniter bisa ditaruh di sini nantinya
-            if (nama && email && pesan) {
-                // Notifikasi mockup sukses modern
-                alert(`Terima kasih ${nama}, kritik dan saran Anda berhasil dikirim!`);
-                formKritikSaran.reset(); // Bersihkan form data
-            }
+            // Simulasi pengiriman sukses (Nantinya digantikan fungsi AJAX/Form-POST CI)
+            alert(`Terima kasih ${name}, kritik atau saran Anda telah berhasil terkirim secara aman ke sistem Samsat Perawang.`);
+
+            // Reset input form setelah berhasil kirim
+            feedbackForm.reset();
         });
     }
 
-    // ==========================================
-    // 3. AUTO CLOSE NAVBAR ON MOBILE CLICK
-    // ==========================================
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-    const navbarCollapse = document.getElementById("navbarNav");
+    // 4. Efek Smooth Scroll untuk Navigasi Internal Menu Berjalan Aman
+    const links = document.querySelectorAll('.navbar-nav a[href^="#"], .btn-nav-group a[href^="#"], .hero-section a[href^="#"]');
 
-    if (navbarCollapse) {
-        const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggled: false });
-        navLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                // Hanya tutup jika hamburger menu dalam posisi terbuka/tampil (Mobile)
-                if (window.getComputedStyle(document.querySelector('.navbar-toggler')).display !== 'none') {
-                    bsCollapse.toggle();
+    for (const link of links) {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+                // Menutup Hamburger Menu Otomatis pada Tampilan Mobile setelah klik tautan
+                const navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
                 }
-            });
+
+                // Kalkulasi offset tinggi agar tidak tertutup Sticky Navbar
+                const navbarHeight = navbar.offsetHeight;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth"
+                });
+            }
         });
     }
 });
