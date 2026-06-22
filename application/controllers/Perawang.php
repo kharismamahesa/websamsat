@@ -8,7 +8,7 @@ class Perawang extends CI_Controller
 	{
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
-		$this->load->model('Model_Samsat_Berita', 'model_samsat_berita');
+		// $this->load->model('Model_Samsat_Berita', 'model_samsat_berita');
 		$this->load->library('Lib_func', 'lib_func');
 		$this->load->library('pagination');
 	}
@@ -17,7 +17,7 @@ class Perawang extends CI_Controller
 	{
 		$data = array(
 			'title' => 'Official Website - Samsat Perawang',
-			'getallberita' => $this->model_samsat_berita->getAllbyKantor(3991),
+			// 'getallberita' => $this->model_samsat_berita->getAllbyKantor(3991),
 		);
 		$this->load->view('perawang/header', $data);
 		$this->load->view('perawang/halamanutama', $data);

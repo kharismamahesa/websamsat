@@ -1,0 +1,336 @@
+/* ==========================================================================
+   RESET & GLOBAL UTILITIES 
+   ========================================================================== */
+:root {
+    --primary-color: #0D47A1;
+    /* Biru Tua */
+    --secondary-color: #1976D2;
+    /* Biru Muda */
+    --accent-gold: #FFC107;
+    /* Kuning Emas */
+    --bg-light: #F5F7FA;
+    /* Abu-abu Muda */
+    --text-dark: #212529;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   HELPER UTILITIES
+   ========================================================================== */
+.bg-gradient-blue {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+.text-gold-accent {
+    color: var(--accent-gold);
+}
+
+.bg-gold-accent {
+    background-color: var(--accent-gold);
+}
+
+.bg-primary-light {
+    background-color: rgba(13, 71, 161, 0.08);
+}
+
+.bg-success-light {
+    background-color: rgba(40, 167, 69, 0.08);
+}
+
+.bg-info-light {
+    background-color: rgba(23, 162, 184, 0.08);
+}
+
+.bg-warning-light {
+    background-color: rgba(255, 193, 7, 0.08);
+}
+
+.max-w-xl {
+    max-width: 600px;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+/* ==========================================================================
+   ANIMATION & INTERACTION (FADE IN EFFECTS)
+   ========================================================================== */
+.section-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   NAVBAR COMPONENT
+   ========================================================================== */
+.main-navbar {
+    padding: 0.8rem 0;
+    transition: all 0.3s ease;
+}
+
+.logo-placeholder {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background-color: rgba(13, 71, 161, 0.05);
+}
+
+.header-title {
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.sub-header-title {
+    font-size: 0.72rem;
+}
+
+.main-navbar .nav-link {
+    font-weight: 500;
+    color: #495057;
+    font-size: 0.92rem;
+    padding: 0.5rem 0.8rem !important;
+    transition: color 0.2s ease;
+}
+
+.main-navbar .nav-link:hover,
+.main-navbar .nav-link.active {
+    color: var(--primary-color);
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   HERO COMPONENT
+   ========================================================================== */
+.hero-section {
+    background-color: #FFFFFF;
+    min-height: calc(100vh - 75px);
+}
+
+.tracking-wider {
+    letter-spacing: 1px;
+}
+
+.hero-svg {
+    max-height: 400px;
+    width: 100%;
+}
+
+/* ==========================================================================
+   CARDS & STATISTIK COMPONENT
+   ========================================================================== */
+.card-stat {
+    border-radius: 16px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.card-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.stat-icon-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   LAYANAN COMPONENT
+   ========================================================================== */
+.card-layanan {
+    border-radius: 16px;
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+    border: 1px solid transparent !important;
+}
+
+.card-layanan:hover {
+    border-color: rgba(13, 71, 161, 0.1) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.layanan-icon {
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+/* ==========================================================================
+   TIMELINE (ALUR PEMBAYARAN)
+   ========================================================================== */
+.timeline-container {
+    position: relative;
+}
+
+/* Jalur Penghubung Desktop */
+@media (min-width: 992px) {
+    .timeline-row {
+        position: relative;
+    }
+
+    .timeline-row::before {
+        content: '';
+        position: absolute;
+        top: 30px;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background-color: rgba(13, 71, 161, 0.15);
+        z-index: 1;
+    }
+}
+
+.timeline-item {
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-badge {
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    border: 5px solid #FFFFFF;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-badge {
+    background-color: var(--accent-gold);
+    color: #212529;
+}
+
+/* ==========================================================================
+   BERITA & PERSYARATAN COMPONENT
+   ========================================================================== */
+.card-syarat {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.card-news {
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+}
+
+.card-news:hover {
+    transform: translateY(-4px);
+}
+
+.news-img-placeholder {
+    height: 180px;
+    background-color: #E9ECEF !important;
+}
+
+.opacity-20 {
+    opacity: 0.2;
+}
+
+/* ==========================================================================
+   GALERI COMPONENT
+   ========================================================================== */
+.galeri-placeholder {
+    height: 200px;
+    background-color: #212529 !important;
+    transition: opacity 0.3s ease;
+}
+
+.galeri-item:hover .galeri-placeholder {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   FOOTER COMPONENT
+   ========================================================================== */
+.hover-link {
+    transition: color 0.2s ease;
+}
+
+.hover-link:hover {
+    color: var(--accent-gold) !important;
+}
+
+.social-btn {
+    transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+    background-color: #E1306C;
+    /* Instagram Color Accent */
+    border-color: #E1306C;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (BREAKPOINTS)
+   ========================================================================== */
+@media (max-width: 991.98px) {
+
+    /* Penyesuaian Alur Vertikal di Mobile */
+    .timeline-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 35px;
+        width: 2px;
+        background-color: rgba(13, 71, 161, 0.15);
+    }
+
+    .timeline-item {
+        text-align: left !important;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .timeline-badge {
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    .timeline-item p {
+        padding: 0 !important;
+    }
+
+    .alignment-menu {
+        padding: 1rem 0;
+    }
+
+    .action-buttons {
+        margin-top: 0.5rem;
+    }
+}

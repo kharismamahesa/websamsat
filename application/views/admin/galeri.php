@@ -12,7 +12,7 @@
                     <table id="table-galeri" class="table table-bordered table-striped table-hover w-100">
                         <thead>
                             <tr>
-                                <th width="5%">ID</th>
+                                <th width="5%">No</th>
                                 <th width="15%">Cover/Foto Utama</th>
                                 <th>Keterangan</th>
                                 <th width="15%">Jumlah Foto</th>
@@ -144,7 +144,14 @@ document.addEventListener("DOMContentLoaded", function() {
             "type": "GET"
         },
         "columns": [
-            { "data": "id" },
+            { 
+                "data": null,
+                "orderable": false,
+                "searchable": false,
+                "render": function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
             { "data": "foto", "orderable": false },
             { "data": "keterangan" },
             { "data": "total_foto", "orderable": false },
@@ -155,8 +162,8 @@ document.addEventListener("DOMContentLoaded", function() {
         "language": {
             "lengthMenu": "Tampilkan _MENU_ data per halaman",
             "zeroRecords": "Tidak ada data ditemukan",
-            "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
-            "infoEmpty": "Tidak ada data tersedia",
+            "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
             "infoFiltered": "(difilter dari _MAX_ total data)",
             "search": "Cari:",
             "paginate": {

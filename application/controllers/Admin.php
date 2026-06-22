@@ -42,6 +42,14 @@ class Admin extends CI_Controller
 
 		$id_uptup = $this->session->userdata('admin_id_uptup');
 
+		// 1. Get total records without search filter
+		$this->db->from('samsat_berita');
+		if ($id_uptup) {
+			$this->db->where('kantor_id', $id_uptup);
+		}
+		$recordsTotal = $this->db->count_all_results();
+
+		// 2. Get records with search filter
 		$this->db->select('*');
 		$this->db->from('samsat_berita');
 		if ($id_uptup) {
@@ -56,9 +64,9 @@ class Admin extends CI_Controller
 			$this->db->group_end();
 		}
 
-		// Get total count
+		// Get filtered count
 		$temp_db = clone $this->db;
-		$total_records = $temp_db->count_all_results();
+		$recordsFiltered = $temp_db->count_all_results();
 
 		$this->db->order_by('created_date', 'DESC');
 		$this->db->limit($length, $start);
@@ -75,7 +83,6 @@ class Admin extends CI_Controller
 			';
 
 			$data[] = [
-				'id' => $row->id,
 				'cover' => $cover_img,
 				'judul' => character_limiter($row->judul, 40),
 				'author' => $row->author,
@@ -87,8 +94,8 @@ class Admin extends CI_Controller
 
 		$output = [
 			"draw" => $draw,
-			"recordsTotal" => $total_records,
-			"recordsFiltered" => $total_records,
+			"recordsTotal" => $recordsTotal,
+			"recordsFiltered" => $recordsFiltered,
 			"data" => $data
 		];
 
@@ -331,6 +338,14 @@ class Admin extends CI_Controller
 
 		$id_uptup = $this->session->userdata('admin_id_uptup');
 
+		// 1. Get total records without search filter
+		$this->db->from('samsat_galeri');
+		if ($id_uptup) {
+			$this->db->where('kantor_id', $id_uptup);
+		}
+		$recordsTotal = $this->db->count_all_results();
+
+		// 2. Get records with search filter
 		$this->db->select('g.*, (SELECT COUNT(*) FROM samsat_galeri_foto WHERE id_galeri = g.id) as total_foto');
 		$this->db->from('samsat_galeri g');
 		if ($id_uptup) {
@@ -344,8 +359,9 @@ class Admin extends CI_Controller
 			$this->db->group_end();
 		}
 
+		// Get filtered count
 		$temp_db = clone $this->db;
-		$total_records = $temp_db->count_all_results();
+		$recordsFiltered = $temp_db->count_all_results();
 
 		$this->db->order_by('g.created_datetime', 'DESC');
 		$this->db->limit($length, $start);
@@ -365,7 +381,6 @@ class Admin extends CI_Controller
 				: '<span class="badge badge-secondary">Belum ada foto</span>';
 
 			$data[] = [
-				'id' => $row->id,
 				'foto' => $cover_img,
 				'keterangan' => character_limiter($row->keterangan, 60),
 				'total_foto' => $foto_btn,
@@ -376,8 +391,8 @@ class Admin extends CI_Controller
 
 		$output = [
 			"draw" => $draw,
-			"recordsTotal" => $total_records,
-			"recordsFiltered" => $total_records,
+			"recordsTotal" => $recordsTotal,
+			"recordsFiltered" => $recordsFiltered,
 			"data" => $data
 		];
 
