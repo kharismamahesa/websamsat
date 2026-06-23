@@ -469,13 +469,13 @@
                             </div>
                         </div>
                         <div class="mt-5">
-                            <a href="https://maps.google.com" target="_blank" class="btn btn-warning w-100 rounded-pill py-2.5 fw-bold text-dark d-flex align-items-center justify-content-center gap-2 shadow"><i class="bi bi-geo-alt"></i> Buka Google Maps</a>
+                            <a href="https://maps.app.goo.gl/Nvpq4RvBC6iorLhk9" target="_blank" class="btn btn-warning w-100 rounded-pill py-2.5 fw-bold text-dark d-flex align-items-center justify-content-center gap-2 shadow"><i class="bi bi-geo-alt"></i> Buka Google Maps</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-7" data-aos="fade-left">
                     <div class="map-wrapper rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2818619616056!2d101.60945897407025!3d0.6872658632612089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d34346e45f9bfb%3A0xc3fa976df24df5fd!2sSamsat%20Perawang!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" width="100%" height="100%" style="border:0; min-height: 350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://maps.google.com/maps?q=Samsat+Perawang&z=16&output=embed" width="100%" height="100%" style="border:0; min-height:350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
