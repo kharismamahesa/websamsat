@@ -14,7 +14,7 @@
 			<div class="col-lg-8">
 				<!-- Blog Detail Start -->
 				<div class="mb-5">
-					<img class="img-fluid w-100 rounded mb-2" src="<?= base_url('upload/images/') . $getberitabylink->cover ?>" alt="">
+					<img class="img-fluid w-100 rounded mb-2" src="<?= base_url('upload/berita/') . $getberitabylink->cover ?>" alt="">
 					<p>
 						<?php
 						$tgl = date_format(new DateTime($getberitabylink->created_date), "Y-m-d");

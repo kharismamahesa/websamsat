@@ -14,7 +14,7 @@
 			<div class="col-lg-8">
 				<!-- Blog Detail Start -->
 				<div class="mb-5">
-					<img class="img-fluid w-100 rounded mb-2" src="<?= base_url('upload/images/') . $getberitabylink->cover ?>" alt="">
+					<img class="img-fluid w-100 rounded mb-2" src="<?= base_url('upload/berita/') . $getberitabylink->cover ?>" alt="">
 					<p>
 						<?php
 						$tgl = date_format(new DateTime($getberitabylink->created_date), "Y-m-d");
@@ -45,7 +45,7 @@
 						foreach ($getallberita->result_array() as $datanya) {
 					?>
 							<div class="d-flex rounded overflow-hidden mb-3">
-								<img class="img-fluid" src="<?= base_url('upload/images/') .  $datanya['cover'] ?>" style="width: 100px; height: 100px; object-fit: cover;" alt="">
+								<img class="img-fluid" src="<?= base_url('upload/berita/') .  $datanya['cover'] ?>" style="width: 100px; height: 100px; object-fit: cover;" alt="">
 								<a href="<?= base_url('pekanbarukota/detailberita/') . $datanya['link'] ?>" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">
 									<?= $datanya['judul'] ?>
 								</a>

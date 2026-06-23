@@ -26,7 +26,7 @@
 				<div class="col-lg-3">
 					<div style="height: 200px;" class="blog-item bg-light rounded overflow-hidden">
 						<div class="blog-img overflow-hidden">
-							<img class="img-fluid w-100" style="height: 200px; object-fit: cover;" src="<?= base_url('upload/images/') . $cover ?>" alt="">
+							<img class="img-fluid w-100" style="height: 200px; object-fit: cover;" src="<?= base_url('upload/berita/') . $cover ?>" alt="">
 						</div>
 
 					</div>

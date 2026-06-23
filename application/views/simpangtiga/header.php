@@ -26,6 +26,7 @@
 	<!-- Template Main CSS Files -->
 	<link href="<?= base_url('assets/zenblog/') ?>css/variables.css" rel="stylesheet">
 	<link href="<?= base_url('assets/zenblog/') ?>css/main.css" rel="stylesheet">
+	<link href="<?= base_url('assets/simpangtiga/style.css?v=' . time()) ?>" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
@@ -58,8 +59,6 @@
 					<li><a href="<?= base_url('simpangtiga/faq') ?>">FAQ</a></li>
 					<li class="dropdown"><a href="#"><span>Publikasi</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
 						<ul>
-							<!-- <li><a href="<?= base_url('simpangtiga/galeri') ?>">Galeri</a></li>
-							<li><a href="<?= base_url('simpangtiga/dokumen') ?>">Dokumen</a></li> -->
 							<li><a href="<?= base_url('simpangtiga/tarif') ?>">Tarif</a></li>
 						</ul>
 					</li>

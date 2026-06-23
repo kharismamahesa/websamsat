@@ -96,7 +96,7 @@
 						<div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
 							<div style="min-height: 400px;" class="blog-item bg-light rounded overflow-hidden">
 								<div class="blog-img overflow-hidden">
-									<img class="img-fluid w-100" style="height: 200px; object-fit: cover;" src="<?= base_url('upload/images/') . $datanya['cover'] ?>" alt="">
+									<img class="img-fluid w-100" style="height: 200px; object-fit: cover;" src="<?= base_url('upload/berita/') . $datanya['cover'] ?>" alt="">
 									<!-- <a class="position-absolute top-0 start-0 bg-success text-white rounded-end mt-5 py-2 px-4" href="">
                                         <i class="far fa-calendar-alt text-white me-2"></i> <?= $tanggal_berita ?>
                                     </a> -->
@@ -108,9 +108,10 @@
 								</div>
 							</div>
 						</div>
-
 				<?php }
-				} ?>
+				} else { ?>
+					<h5>Belum tersedia</h5>
+				<?php } ?>
 
 			</div>
 

@@ -10,9 +10,6 @@
 						<br>
 						Call Center : 081276045009
 						<br>
-						Email : Silahkan scan QR Code dibawah ini
-						<br>
-						<img src="<?= base_url('assets/images/qrsamsatsimpangtiga.png') ?>" alt="" class="img-fluid w-75">
 					</p>
 				</div>
 				<div class="col-lg-3">
@@ -29,7 +26,7 @@
 						?>
 								<li>
 									<a href="<?= base_url('simpangtiga/detailberita/') . $datanya['link'] ?>" class="d-flex align-items-center">
-										<img src="<?= base_url('upload/images/') . $datanya['cover'] ?>" alt="" class="img-fluid me-3" style="width: 70px; height: 70px; object-fit: cover;">
+										<img src="<?= base_url('upload/berita/') . $datanya['cover'] ?>" alt="" class="img-fluid me-3" style="width: 70px; height: 70px; object-fit: cover; flex-shrink: 0;">
 										<div>
 											<div class="post-meta d-block">
 												<span><?= $tanggal_berita ?></span>
@@ -112,3 +109,4 @@
 	</div>
 </footer>
 <!-- FOOTER -->
+<script src="<?= base_url('assets/simpangtiga/script.js?v=' . time()) ?>"></script>

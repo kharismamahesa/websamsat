@@ -21,7 +21,7 @@
 				</div>
 				<div class="single-post col-md-9">
 					<figure class="my-4 text-center">
-						<img src="<?= base_url('upload/images/') . $getberitabylink->cover ?>" alt="" class="img-fluid w-75">
+						<img src="<?= base_url('upload/berita/') . $getberitabylink->cover ?>" alt="" class="img-fluid w-75">
 					</figure>
 					<div style="font-family: Georgia !important;">
 						<?= strip_tags($getberitabylink->berita, $allowed) ?>

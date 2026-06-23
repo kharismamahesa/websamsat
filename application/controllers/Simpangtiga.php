@@ -29,6 +29,7 @@ class Simpangtiga extends CI_Controller
 			'getlastberita' => $this->model_samsat_berita->getLastBeritabyKantor(1992),
 			'getallberita' => $this->model_samsat_berita->getAllbyKantor(1992),
 			'getalljenislayanan' => $this->model_samsat_pelayanan->getAllJenis(1992),
+			'getallgaleri' => $this->model_samsat_galeri->getSemuaGaleri(1992, 4, 0),
 		);
 		$this->load->view('simpangtiga/header', $data);
 		$this->load->view('simpangtiga/halamanutama', $data);

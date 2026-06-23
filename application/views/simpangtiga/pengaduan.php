@@ -10,7 +10,7 @@
 					<div class="row">
 
 						<div class="col-md-6 text-center">
-							<a href="#" target="_blank">
+							<a href="https://bapenda.riau.go.id/pelayanan/pengaduankirim?uptup=1992&jenis=1" target="_blank">
 								<img src="https://bapenda.riau.go.id/assets/sipengat.png" style="border: 1px solid #000; border-radius: 7px; height: 80px;" class="img-fluid" alt="">
 							</a>
 						</div>

@@ -1,42 +1,36 @@
 <!-- SLIDER -->
 <section id="hero-slider" class="hero-slider">
-	<div class="container-md" data-aos="fade-in">
-		<div class="row">
-			<div class="col-12">
-				<div class="swiper sliderFeaturedPosts">
-					<div class="swiper-wrapper">
+	<div class="swiper sliderFeaturedPosts">
+		<div class="swiper-wrapper">
 
-						<div class="swiper-slide">
-							<a href="#" class="img-bg d-flex align-items-end" style="background-image: url('<?= base_url('assets/zenblog/') ?>img/slide/slide1.jpeg');">
-								<div class="img-bg-inner">
-									<h2>Kantor Pelayanan UPT Pengelolaan Pendapatan Simpang Tiga</h2>
-									<p>Badan Pendapatan Daerah Provinsi Riau Jalan Jendral Sudirman</p>
-								</div>
-							</a>
-						</div>
-						<div class="swiper-slide">
-							<a href="#" class="img-bg d-flex align-items-end" style="background-image: url('<?= base_url('assets/zenblog/') ?>img/slide/slide2.jpeg');">
-								<div class="img-bg-inner">
-									<h2>Samsat Drive Thru UPT Pengelolaan Pendapatan Simpang Tiga</h2>
-									<p>Samsat Drive Thru merupakan, layanan transaksi membayar pajak tahunan
-										kendaraan bermotor tanpa turun dengan keunggulannya yakni lebih cepat,
-										mudah dan modern.</p>
-								</div>
-							</a>
-						</div>
-
+			<div class="swiper-slide">
+				<a href="#" class="img-bg d-flex align-items-end" style="background-image: url('<?= base_url('assets/zenblog/') ?>img/slide/slide1.jpeg');">
+					<div class="img-bg-inner">
+						<h2>Kantor Pelayanan UPT Pengelolaan Pendapatan Simpang Tiga</h2>
+						<p>Badan Pendapatan Daerah Provinsi Riau Jalan Jendral Sudirman</p>
 					</div>
-					<div class="custom-swiper-button-next">
-						<span class="bi-chevron-right"></span>
-					</div>
-					<div class="custom-swiper-button-prev">
-						<span class="bi-chevron-left"></span>
-					</div>
-
-					<div class="swiper-pagination"></div>
-				</div>
+				</a>
 			</div>
+			<div class="swiper-slide">
+				<a href="#" class="img-bg d-flex align-items-end" style="background-image: url('<?= base_url('assets/zenblog/') ?>img/slide/slide2.jpeg');">
+					<div class="img-bg-inner">
+						<h2>Samsat Drive Thru UPT Pengelolaan Pendapatan Simpang Tiga</h2>
+						<p>Samsat Drive Thru merupakan, layanan transaksi membayar pajak tahunan
+							kendaraan bermotor tanpa turun dengan keunggulannya yakni lebih cepat,
+							mudah dan modern.</p>
+					</div>
+				</a>
+			</div>
+
 		</div>
+		<div class="custom-swiper-button-next">
+			<span class="bi-chevron-right"></span>
+		</div>
+		<div class="custom-swiper-button-prev">
+			<span class="bi-chevron-left"></span>
+		</div>
+
+		<div class="swiper-pagination"></div>
 	</div>
 </section>
 <!-- SLIDER -->
@@ -52,7 +46,7 @@
 				$tanggal_berita = $this->lib_func->tgl_indo($tgl);
 				?>
 				<div class="post-entry-1 lg">
-					<a href="<?= base_url('simpangtiga/detailberita/') . $getlastberita->row()->link ?>"><img src="<?= base_url('upload/images/') . $getlastberita->row()->cover ?>" alt="" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;"></a>
+					<a href="<?= base_url('simpangtiga/detailberita/') . $getlastberita->row()->link ?>"><img src="<?= base_url('upload/berita/') . $getlastberita->row()->cover ?>" alt="" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;"></a>
 					<div class="post-meta">
 						<span><?= $tanggal_berita ?></span>
 					</div>
@@ -84,7 +78,7 @@
 
 								<div class="col-lg-4 border-end custom-border">
 									<div class="post-entry-1">
-										<a href="<?= base_url('simpangtiga/detailberita/') . $datanya['link'] ?>"><img src="<?= base_url('upload/images/') . $datanya['cover'] ?>" alt="" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;"></a>
+										<a href="<?= base_url('simpangtiga/detailberita/') . $datanya['link'] ?>"><img src="<?= base_url('upload/berita/') . $datanya['cover'] ?>" alt="" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;"></a>
 										<div class="post-meta"><span><?= $tanggal_berita ?></span></div>
 										<h2><a href="<?= base_url('simpangtiga/detailberita/') . $datanya['link'] ?>"><?= $datanya['judul'] ?></a></h2>
 									</div>
@@ -146,6 +140,49 @@
 	</div>
 </section>
 <!-- SIGNAL -->
+
+<!-- GALERI KEGIATAN -->
+<style>
+.gallery-item:hover img {
+	transform: scale(1.06);
+}
+.gallery-item:hover .gallery-overlay {
+	opacity: 1 !important;
+}
+</style>
+<section id="galeri" class="galeri py-5">
+	<div class="container" data-aos="fade-up">
+		<div class="section-header d-flex justify-content-between align-items-center mb-5">
+			<h2>Galeri Kegiatan</h2>
+		</div>
+
+		<div class="row g-4">
+			<?php if (isset($getallgaleri) && $getallgaleri->num_rows() > 0) {
+				foreach ($getallgaleri->result_array() as $galeri) { 
+					$photos_query = $this->model_samsat_galeri->getGaleriFotobyIDGaleri($galeri['id']);
+					$all_photos = [base_url('upload/galeri/') . $galeri['foto']];
+					foreach ($photos_query->result_array() as $p) {
+						$all_photos[] = base_url('upload/galeri/') . $p['foto'];
+					}
+					?>
+					<div class="col-md-6 col-lg-3">
+						<div class="gallery-item position-relative overflow-hidden rounded-3 shadow-sm" style="cursor: pointer; height: 220px;" data-photos='<?= json_encode($all_photos) ?>' data-keterangan="<?= htmlspecialchars($galeri['keterangan'], ENT_QUOTES, 'UTF-8') ?>">
+							<img src="<?= base_url('upload/galeri/') . $galeri['foto'] ?>" class="w-100 h-100 object-fit-cover" alt="<?= $galeri['keterangan'] ?>" style="transition: transform 0.3s ease;">
+							<div class="gallery-overlay position-absolute start-0 top-0 w-100 h-100 d-flex flex-column justify-content-end p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); opacity: 0; transition: opacity 0.3s ease;">
+								<span class="fw-bold small"><?= $galeri['keterangan'] ?></span>
+							</div>
+						</div>
+					</div>
+			<?php }
+			} else { ?>
+				<div class="col-12 text-center py-5">
+					<p class="text-muted">Belum ada galeri kegiatan.</p>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+</section>
+<!-- GALERI KEGIATAN -->
 
 </main>
 <!-- MAIN -->

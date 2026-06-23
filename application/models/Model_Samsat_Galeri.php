@@ -10,12 +10,10 @@ class Model_Samsat_Galeri extends CI_Model
 
     function getSemuaGaleri($kantor_id, $limit, $start)
     {
-
-        $this->db->select('samsat_galeri.id, samsat_galeri.keterangan, samsat_galeri.kantor_id, samsat_galeri_foto.id AS id_galeri_foto, samsat_galeri_foto.foto');
+        $this->db->select('samsat_galeri.id, samsat_galeri.keterangan, samsat_galeri.foto, samsat_galeri.kantor_id, samsat_galeri.created_datetime');
         $this->db->from('samsat_galeri');
-        $this->db->join('samsat_galeri_foto', 'samsat_galeri.id = samsat_galeri_foto.id_galeri');
         $this->db->where("samsat_galeri.kantor_id", $kantor_id);
-        $this->db->group_by("samsat_galeri_foto.id_galeri");
+        $this->db->order_by("samsat_galeri.created_datetime", "DESC");
         $this->db->limit($limit, $start);
         return $this->db->get();
     }

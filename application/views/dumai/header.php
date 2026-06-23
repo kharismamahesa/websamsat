@@ -18,7 +18,7 @@
  	<link href="<?= base_url('assets/startup/') ?>lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
  	<link href="<?= base_url('assets/startup/') ?>lib/animate/animate.min.css" rel="stylesheet">
  	<link href="<?= base_url('assets/startup/') ?>css/bootstrap.min.css" rel="stylesheet">
- 	<link href="<?= base_url('assets/startup/') ?>css/style.css" rel="stylesheet">
+ 	<link href="<?= base_url('assets/startup/') ?>css/style.css?v=<?= time() ?>" rel="stylesheet">
 
  	<style>
  		.bg-header {
