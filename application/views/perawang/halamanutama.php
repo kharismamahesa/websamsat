@@ -404,7 +404,12 @@
                                     <i class="bi bi-clock-fill text-warning fs-5"></i>
                                     <div>
                                         <h6 class="fw-bold mb-1">Jam Operasional</h6>
-                                        <p class="text-white-50 small mb-0">Senin - Jumat: 08.00 - 14.00 WIB<br><span class="text-warning">Sabtu, Minggu & Hari Libur Nasional Tutup</span></p>
+                                        <p class="text-white-50 small mb-0">
+                                            Senin - Kamis: 08.00 - 14.00 WIB<br>
+                                            Jumat: 08.00 - 11.00 WIB<br>
+                                            Sabtu: 08.00 - 12.00 WIB<br>
+                                            <span class="text-warning">Minggu & Hari Libur Nasional Tutup</span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-start gap-3 mt-4">

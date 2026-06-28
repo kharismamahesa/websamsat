@@ -1,12 +1,25 @@
 /* Custom CSS Variables */
 :root {
-    --primary-blue: #0D47A1;
-    --light-blue: #1976D2;
+    --primary-green: #164831;
+    --light-green: #56b157;
+    --mid-green: #5f8e5f;
     --white: #FFFFFF;
-    --light-gray: #F5F7FA;
-    --accent-gold: #FFC107;
-    --dark-blue: #0A2540;
+    --light-cream: #e3e1cf;
+    --accent-gold: #edcd6c;
+    --dark-green: #164831;
     --text-dark: #2D3748;
+
+    /* Alias untuk kompatibilitas */
+    --primary-blue: #164831;
+    --light-blue: #56b157;
+    --light-gray: #e3e1cf;
+    --dark-blue: #164831;
+
+    /* Override Bootstrap Variables */
+    --bs-primary: #164831;
+    --bs-primary-rgb: 22, 72, 49;
+    --bs-warning: #edcd6c;
+    --bs-warning-rgb: 237, 205, 108;
 }
 
 /* Global Reset & Typography */
@@ -18,6 +31,48 @@ body {
     overflow-x: hidden;
 }
 
+/* Global Button & Link Overrides */
+.btn-primary {
+    background-color: var(--primary-green) !important;
+    border-color: var(--primary-green) !important;
+    color: var(--white) !important;
+}
+
+.btn-primary:hover, 
+.btn-primary:focus, 
+.btn-primary:active, 
+.btn-primary:active:focus {
+    background-color: var(--mid-green) !important;
+    border-color: var(--mid-green) !important;
+    color: var(--white) !important;
+    box-shadow: 0 0 0 0.25rem rgba(22, 72, 49, 0.25) !important;
+}
+
+.btn-outline-primary {
+    color: var(--primary-green) !important;
+    border-color: var(--primary-green) !important;
+}
+
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus, 
+.btn-outline-primary:active, 
+.btn-outline-primary:active:focus {
+    background-color: var(--primary-green) !important;
+    border-color: var(--primary-green) !important;
+    color: var(--white) !important;
+    box-shadow: 0 0 0 0.25rem rgba(22, 72, 49, 0.25) !important;
+}
+
+a {
+    color: var(--primary-green);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: var(--mid-green);
+}
+
 .bg-dark-blue {
     background-color: var(--dark-blue) !important;
 }
@@ -27,15 +82,15 @@ body {
 }
 
 .bg-blue-light {
-    background-color: rgba(25, 118, 210, 0.1) !important;
+    background-color: rgba(22, 72, 49, 0.1) !important;
 }
 
 .bg-warning-light {
-    background-color: rgba(255, 193, 7, 0.1) !important;
+    background-color: rgba(237, 205, 108, 0.15) !important;
 }
 
 .bg-success-light {
-    background-color: rgba(40, 167, 69, 0.1) !important;
+    background-color: rgba(86, 177, 87, 0.1) !important;
 }
 
 .bg-danger-light {
@@ -83,7 +138,7 @@ body {
 }
 
 .dynamic-navbar.scrolled {
-    background-color: var(--dark-blue);
+    background-color: #0d2c1e;
     padding: 0.7rem 0;
 }
 
@@ -117,7 +172,7 @@ body {
 
 /* 2. Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    background: linear-gradient(135deg, var(--primary-green) 0%, #0d2c1e 100%);
     min-height: 80vh;
     padding: 6rem 0;
 }
@@ -132,7 +187,7 @@ body {
 .hero-circle-bg {
     width: 120%;
     height: 120%;
-    background: radial-gradient(circle, rgba(25, 118, 210, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(86, 177, 87, 0.2) 0%, transparent 70%);
     z-index: 0;
 }
 
@@ -172,28 +227,23 @@ body {
     border-bottom: 3px solid var(--light-blue) !important;
 }
 
-/* 5. Alur Pembayaran Timeline (Responsive Grid Standard) */
-.timeline-container::before {
-    content: '';
-    position: absolute;
-    top: 50px;
-    left: 5%;
-    right: 5%;
-    height: 3px;
-    background-color: var(--light-gray);
-    z-index: 1;
+/* 5. Alur Pembayaran Timeline */
+.timeline-container {
+    position: relative;
 }
 
 .timeline-item {
     position: relative;
-    z-index: 2;
 }
 
 .timeline-icon {
     width: 50px;
     height: 50px;
     border: 4px solid var(--white);
+    position: relative;
+    z-index: 2;
 }
+
 
 /* 7. Berita & Pengumuman */
 .news-img {
@@ -227,7 +277,7 @@ body {
 }
 
 .gallery-overlay {
-    background: linear-gradient(to top, rgba(10, 37, 64, 0.95) 0%, transparent 100%);
+    background: linear-gradient(to top, rgba(22, 72, 49, 0.95) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -298,29 +348,48 @@ body {
         margin-top: 2rem;
     }
 
-    .timeline-container::before {
-        display: none;
+    .btn-nav-group {
+        flex-direction: column;
+        margin-top: 1rem;
     }
+}
 
+/* ── lg (≥992px): 5 item 1 baris, garis HORIZONTAL ── */
+@media (min-width: 992px) {
     .timeline-row {
         position: relative;
-        padding-left: 2rem;
-    }
-
-    .timeline-row::before {
-        content: '';
-        position: absolute;
-        left: calc(2rem + (var(--bs-gutter-x, 1.5rem) * 0.5) + 23.5px);
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background-color: var(--light-gray);
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
     }
 
     .timeline-item {
-        text-align: left !important;
-        display: flex;
+        flex: 1;
+        text-align: center;
+    }
+
+    /* Garis horizontal tepat di tengah semua icon (25px = 50px/2) */
+    .timeline-row::before {
+        content: '';
+        position: absolute;
+        top: 25px;
+        left: 10%;
+        right: 10%;
+        height: 3px;
+        background-color: var(--light-gray);
+        z-index: 1;
+    }
+}
+
+/* ── <992px: paksa 1-kolom, garis VERTIKAL per icon ── */
+@media (max-width: 991.98px) {
+    /* Override col-md-6 → full width untuk semua item timeline */
+    .timeline-item {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
         align-items: flex-start;
+        text-align: left !important;
         gap: 1.5rem;
     }
 
@@ -329,9 +398,21 @@ body {
         margin: 0 !important;
     }
 
-    .btn-nav-group {
-        flex-direction: column;
-        margin-top: 1rem;
+    /*
+     * Garis vertikal muncul di sebelah kiri menghubungkan icon.
+     * Menggunakan ::after pada timeline-item dengan bottom negatif agar menjangkau
+     * item berikutnya tanpa melewati batas bawah item terakhir.
+     */
+    .timeline-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 50px;
+        left: calc(var(--bs-gutter-x, 1.5rem) * 0.5 + 25px);
+        transform: translateX(-50%);
+        width: 3px;
+        bottom: -2rem;
+        background-color: var(--light-gray);
+        z-index: 1;
     }
 }
 
@@ -399,11 +480,11 @@ body {
 }
 
 .lightbox-btn:hover {
-    background: #007bff; /* fallback if var not resolved, or primary color */
-    background: var(--primary, #007bff);
-    border-color: var(--primary, #007bff);
+    background: #164831; /* fallback if var not resolved, or primary color */
+    background: var(--primary-green, #164831);
+    border-color: var(--primary-green, #164831);
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 15px rgba(22, 72, 49, 0.5);
 }
 
 .lightbox-prev {
@@ -448,7 +529,7 @@ body {
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .lightbox-counter {
@@ -481,7 +562,7 @@ body {
 
 .lightbox-thumb:hover, .lightbox-thumb.active {
     opacity: 1;
-    border-color: var(--primary, #007bff);
+    border-color: var(--primary-green, #164831);
     transform: translateY(-2px);
 }
 
@@ -492,29 +573,36 @@ body {
         bottom: -75px;
         transform: none;
     }
+
     .lightbox-next {
         right: 10px;
         top: auto;
         bottom: -75px;
         transform: none;
     }
+
     .lightbox-prev:hover {
         transform: scale(1.1);
     }
+
     .lightbox-next:hover {
         transform: scale(1.1);
     }
+
     .lightbox-close {
         top: 20px;
         right: 20px;
         position: fixed;
     }
+
     .lightbox-container {
         max-height: 60vh;
     }
+
     .lightbox-img {
         max-height: 60vh;
     }
+
     .lightbox-caption-container {
         margin-top: 90px;
     }
