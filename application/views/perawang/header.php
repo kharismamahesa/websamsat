@@ -29,13 +29,16 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-3">
                     <li class="nav-item"><a class="nav-link active" href="<?= base_url('perawang') ?>#beranda">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('perawang') ?>#layanan">Layanan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('perawang') ?>#persyaratan">Persyaratan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('perawang') ?>#faq">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('perawang') ?>#berita">Berita</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('perawang') ?>#galeri">Galeri</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('perawang/visimisi') ?>">Visi & Misi</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('perawang') ?>#kontak">Kontak</a></li>
                 </ul>
                 <div class="d-flex gap-2 btn-nav-group">
+                    <a href="https://bapenda.riau.go.id/pelayanan/surveikirim?uptup=3991" target="_blank" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-semibold shadow-sm">
+                        <i class="bi bi-clipboard2-check me-1"></i> Survei
+                    </a>
                     <a href="<?= base_url('perawang') ?>#kontak" class="btn btn-warning btn-sm rounded-pill px-3 fw-semibold text-dark shadow-sm">
                         <i class="bi bi-telephone me-1"></i> Kontak
                     </a>

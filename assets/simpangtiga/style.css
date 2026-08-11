@@ -132,6 +132,16 @@ body:has(#hero-slider) .header .navbar .active {
   color: #ffffff !important;
 }
 
+body:has(#hero-slider) .header .navbar .dropdown ul a,
+body:has(#hero-slider) .header .navbar .dropdown ul a:focus {
+  color: var(--color-gray) !important;
+}
+
+body:has(#hero-slider) .header .navbar .dropdown ul a:hover,
+body:has(#hero-slider) .header .navbar .dropdown ul .active {
+  color: var(--color-links) !important;
+}
+
 body:has(#hero-slider) .header .mobile-nav-toggle {
   color: #ffffff !important;
 }

@@ -78,14 +78,14 @@
 						</li>
 					<?php } ?>
 
-					<li class="dropdown"><a href="#"><span>Realtime</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+					<!-- <li class="dropdown"><a href="#"><span>Realtime</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
 						<ul>
 							<li><a href="<?= base_url('simpangtiga/realtime/simpang-tiga') ?>">Penerimaan Simpang Tiga</a></li>
 							<li><a href="<?= base_url('simpangtiga/realtime/samsat-keliling') ?>">Penerimaan Samsat Keliling</a></li>
 							<li><a href="<?= base_url('simpangtiga/realtime/samsat-tanjak') ?>">Penerimaan Samsat Tanjak</a></li>
 							<li><a href="<?= base_url('simpangtiga/realtime/drive-thru') ?>">Penerimaan Drive Thru</a></li>
 						</ul>
-					</li>
+					</li> -->
 					<li><a href="https://sippn.menpan.go.id/instansi/157130/badan-pendapatan-daerah/upt-pengelolaan-pendapatan-simpang-tiga" target="_blank">SIPPN</a></li>
 				</ul>
 			</nav>

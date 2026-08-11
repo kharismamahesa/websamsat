@@ -22,11 +22,22 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-lg-4">
-                    <h6 class="fw-bold text-warning mb-3">Hubungi Sosial Media</h6>
-                    <p class="text-white-50 small mb-3">Ikuti akun resmi kami untuk informasi pemutihan dan jadwal instan harian.</p>
-                    <a href="https://instagram.com" target="_blank" class="d-inline-flex align-items-center gap-2 text-decoration-none text-white bg-blur px-3 py-2 rounded-pill border border-secondary transition-all">
-                        <i class="bi bi-instagram text-danger"></i> <span class="small fw-semibold">@samsat.perawang</span>
-                    </a>
+                    <h6 class="fw-bold text-warning mb-3">Kontak & Sosial Media</h6>
+                    <p class="text-white-50 small mb-3">Ikuti akun resmi kami untuk informasi terbaru.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="tel:082385685430" class="d-inline-flex align-items-center gap-2 text-decoration-none text-white bg-blur px-3 py-2 rounded-pill border border-secondary transition-all">
+                            <i class="bi bi-telephone text-success"></i> <span class="small fw-semibold">082385685430</span>
+                        </a>
+                        <a href="https://instagram.com/samsat.perawang" target="_blank" class="d-inline-flex align-items-center gap-2 text-decoration-none text-white bg-blur px-3 py-2 rounded-pill border border-secondary transition-all">
+                            <i class="bi bi-instagram text-danger"></i> <span class="small fw-semibold">Samsat.perawang</span>
+                        </a>
+                        <a href="#" target="_blank" class="d-inline-flex align-items-center gap-2 text-decoration-none text-white bg-blur px-3 py-2 rounded-pill border border-secondary transition-all">
+                            <i class="bi bi-facebook text-primary"></i> <span class="small fw-semibold">Samsat Perawang</span>
+                        </a>
+                        <a href="#" target="_blank" class="d-inline-flex align-items-center gap-2 text-decoration-none text-white bg-blur px-3 py-2 rounded-pill border border-secondary transition-all">
+                            <i class="bi bi-tiktok text-white"></i> <span class="small fw-semibold">Samsat Perawang</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <hr class="border-secondary opacity-25">

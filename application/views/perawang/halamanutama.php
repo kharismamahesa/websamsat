@@ -12,7 +12,7 @@
                 <div class="col-lg-6 text-center">
                     <div class="hero-illustration-wrapper position-relative">
                         <div class="hero-circle-bg position-absolute top-50 start-50 translate-middle"></div>
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Samsat Service Illustration" class="img-fluid rounded-4 shadow-2xl position-relative z-1 hero-img">
+                        <img src="<?= base_url('assets/perawang/samsatperawang.jpeg') ?>?>" alt="Samsat Perawang" class="img-fluid rounded-4 shadow-2xl position-relative z-1 hero-img">
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <h3 class="fw-bold text-dark mb-3">Layanan Tambahan</h3>
                 <p class="text-muted small max-w-xl mx-auto mb-0" style="font-size: 0.95rem; line-height: 1.6;">Warga Siak tercinta, yuk bangun daerah kita tercinta dengan taat membayar pajak kendaraan bermotor! Samsat Perawang siap melayani Anda di berbagai lokasi pada jadwal tertentu.</p>
             </div>
-            
+
             <!-- 3 cards side-by-side -->
             <div class="row g-4 justify-content-center">
                 <div class="col-sm-12 col-md-6 col-lg-6">
@@ -60,79 +60,50 @@
                 <p class="text-muted">Akses cepat berbagai bentuk jenis pengurusan dokumen dan perpajakan kendaraan Anda.</p>
             </div>
             <div class="row g-4">
+                <?php
+                $layanan_utama = $this->db->query("SELECT * FROM samsat_layanan WHERE id >= 14 ORDER BY id")->result_array();
+                
+                // Array ikon untuk memvariasikan ikon yang muncul
+                $icons = ['bi-calendar-check', 'bi-car-front-fill', 'bi-arrow-repeat', 'bi-arrow-left-right', 'bi-palette', 'bi-hash', 'bi-gift', 'bi-files', 'bi-card-checklist', 'bi-file-earmark-text', 'bi-shield-check'];
+                
+                $i = 0;
+                foreach ($layanan_utama as $layanan) :
+                    $icon = $icons[$i % count($icons)];
+                    $i++;
+                ?>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all">
+                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalLayanan<?= $layanan['id'] ?>">
                         <div class="icon-box-service mb-4 text-primary bg-blue-light rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-calendar-check fs-3"></i>
+                            <i class="bi <?= $icon ?> fs-3"></i>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">Perpanjangan 5 Tahun</h5>
-                        <p class="text-muted small">Proses penggantian pelat nomor kendaraan (TNKB) dan cetak STNK baru setiap 5 tahun sekali.</p>
+                        <h5 class="fw-bold text-dark mb-2"><?= $layanan['jenis_layanan'] ?></h5>
+                        <p class="text-muted small mb-0">Klik untuk melihat detail persyaratan dan prosedur.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all">
-                        <div class="icon-box-service mb-4 text-primary bg-blue-light rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-car-front-fill fs-3"></i>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Modals for Layanan Utama -->
+            <?php foreach ($layanan_utama as $layanan) : ?>
+            <div class="modal fade" id="modalLayanan<?= $layanan['id'] ?>" tabindex="-1" aria-labelledby="modalLayananLabel<?= $layanan['id'] ?>" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content border-0 rounded-4 shadow">
+                        <div class="modal-header bg-primary text-white border-0">
+                            <h5 class="modal-title fw-bold" id="modalLayananLabel<?= $layanan['id'] ?>"><?= $layanan['jenis_layanan'] ?></h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">Kendaraan Baru</h5>
-                        <p class="text-muted small">Pendaftaran dan pengurusan surat tanda nomor kendaraan baru secara resmi, legal, dan cepat.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all">
-                        <div class="icon-box-service mb-4 text-primary bg-blue-light rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-arrow-repeat fs-3"></i>
+                        <div class="modal-body p-4">
+                            <div class="text-dark">
+                                <?= !empty($layanan['keterangan']) ? $layanan['keterangan'] : '<div class="text-center text-muted py-4"><i class="bi bi-info-circle fs-1 text-secondary mb-3 d-block"></i><p class="mb-0">Belum ada detail keterangan untuk layanan ini.</p></div>' ?>
+                            </div>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">Bea Balik Nama (BBN)</h5>
-                        <p class="text-muted small">Pengurusan pengalihan nama kepemilikan legal kendaraan bermotor dari pemilik lama ke pemilik baru.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all">
-                        <div class="icon-box-service mb-4 text-primary bg-blue-light rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-arrow-left-right fs-3"></i>
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">Mutasi</h5>
-                        <p class="text-muted small">Layanan pemindahan registrasi dokumen wilayah kendaraan bermotor keluar maupun masuk daerah.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all">
-                        <div class="icon-box-service mb-4 text-primary bg-blue-light rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-palette fs-3"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">Rubentina</h5>
-                        <p class="text-muted small">Pengurusan administrasi perubahan bentuk fisik kendaraan, warna cat utama, atau ganti mesin.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all">
-                        <div class="icon-box-service mb-4 text-primary bg-blue-light rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-hash fs-3"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">Ganti Nopol</h5>
-                        <p class="text-muted small">Layanan pengurusan registrasi perubahan nomor polisi kendaraan bermotor sesuai ketentuan.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all">
-                        <div class="icon-box-service mb-4 text-primary bg-blue-light rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-gift fs-3"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">Hibah</h5>
-                        <p class="text-muted small">Balik nama kepemilikan kendaraan bermotor khusus berdasarkan penyerahan dokumen hibah legal.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all">
-                        <div class="icon-box-service mb-4 text-primary bg-blue-light rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-files fs-3"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">Duplikat</h5>
-                        <p class="text-muted small">Penerbitan salinan dokumen resmi STNK atau BPKB baru karena hilang, rusak, atau usang.</p>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
     </section>
 
@@ -143,7 +114,7 @@
                 <h2 class="fw-bold text-dark">Alur Pembayaran Pajak</h2>
                 <div class="title-divider mx-auto bg-primary my-3"></div>
             </div>
-            
+
             <div class="timeline-container position-relative py-4">
                 <div class="row g-4 timeline-row">
                     <div class="col-lg col-md-6 timeline-item text-center">
@@ -186,88 +157,88 @@
         </div>
     </section>
 
-    <section id="persyaratan" class="py-5 bg-light-gray section-padding">
+    <section id="faq" class="py-5 bg-light-gray section-padding">
         <div class="container">
             <div class="text-center max-w-xl mx-auto mb-5">
-                <span class="text-primary fw-bold tracking-wider text-uppercase small d-block mb-2">Panduan Berkas</span>
-                <h2 class="fw-bold text-dark">Informasi Persyaratan Berkas</h2>
+                <span class="text-primary fw-bold tracking-wider text-uppercase small d-block mb-2">FAQ</span>
+                <h2 class="fw-bold text-dark">Frequently Asked Questions</h2>
                 <div class="title-divider mx-auto bg-primary my-3"></div>
             </div>
+            
             <div class="row g-4 justify-content-center">
-                <div class="col-lg-5">
-                    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-                        <div class="bg-primary p-4 text-white d-flex align-items-center gap-3">
-                            <i class="bi bi-calendar-event fs-3 text-warning"></i>
-                            <h5 class="fw-bold mb-0">Pajak Tahunan & Pengesahan</h5>
+                <?php
+                // Fetch FAQ Categories
+                $faq_kategories = $this->db->query("SELECT * FROM t_faq_kategori ORDER BY kategori")->result_array();
+                
+                // Array ikon untuk FAQ kategori
+                $faq_icons = ['bi-question-circle', 'bi-info-circle', 'bi-chat-dots', 'bi-journal-text', 'bi-shield-check', 'bi-gear'];
+                
+                $i = 0;
+                foreach ($faq_kategories as $kategori) :
+                    $icon = $faq_icons[$i % count($faq_icons)];
+                    $i++;
+                ?>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-service border-0 shadow-sm rounded-4 p-4 h-100 transition-all text-center" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalFaqKategori<?= $kategori['id'] ?>">
+                        <div class="icon-box-service mx-auto mb-4 text-primary bg-blue-light rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <i class="bi <?= $icon ?> fs-3"></i>
                         </div>
-                        <div class="card-body p-4">
-                            <ul class="list-unstyled space-y-3 mb-0">
-                                <li class="d-flex align-items-start gap-3 border-bottom pb-3">
-                                    <i class="bi bi-check-circle-fill text-primary mt-1"></i>
-                                    <div>
-                                        <strong class="text-dark d-block">KTP Asli</strong>
-                                        <span class="text-muted small">Kartu Tanda Penduduk pemilik sesuai data STNK.</span>
-                                    </div>
-                                </li>
-                                <li class="d-flex align-items-start gap-3 border-bottom pb-3">
-                                    <i class="bi bi-check-circle-fill text-primary mt-1"></i>
-                                    <div>
-                                        <strong class="text-dark d-block">STNK Asli</strong>
-                                        <span class="text-muted small">Surat Tanda Nomor Kendaraan asli beserta fotokopi.</span>
-                                    </div>
-                                </li>
-                                <li class="d-flex align-items-start gap-3">
-                                    <i class="bi bi-check-circle-fill text-primary mt-1"></i>
-                                    <div>
-                                        <strong class="text-dark d-block">Kondisi Fisik Cocok</strong>
-                                        <span class="text-muted small">Kendaraan wajib dibawa jika masa STNK 5 tahunan habis.</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        <h5 class="fw-bold text-dark mb-2"><?= $kategori['kategori'] ?></h5>
+                        <p class="text-muted small mb-0">Klik untuk melihat daftar pertanyaan.</p>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-                        <div class="bg-dark-blue p-4 text-white d-flex align-items-center gap-3">
-                            <i class="bi bi-shuffle fs-3 text-warning"></i>
-                            <h5 class="fw-bold mb-0">Mutasi & Balik Nama (BBNKB)</h5>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Modals for FAQ Categories -->
+            <?php 
+            $faq_index = 0;
+            foreach ($faq_kategories as $kategori) : 
+            ?>
+            <div class="modal fade" id="modalFaqKategori<?= $kategori['id'] ?>" tabindex="-1" aria-labelledby="modalFaqLabel<?= $kategori['id'] ?>" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content border-0 rounded-4 shadow">
+                        <div class="modal-header bg-primary text-white border-0">
+                            <h5 class="modal-title fw-bold" id="modalFaqLabel<?= $kategori['id'] ?>">FAQ: <?= $kategori['kategori'] ?></h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="card-body p-4">
-                            <ul class="list-unstyled space-y-3 mb-0">
-                                <li class="d-flex align-items-start gap-3 border-bottom pb-3">
-                                    <i class="bi bi-check-circle-fill text-primary mt-1"></i>
-                                    <div>
-                                        <strong class="text-dark d-block">KTP Pemilik Baru</strong>
-                                        <span class="text-muted small">Identitas legal mutlak pihak pembeli/penerima.</span>
+                        <div class="modal-body p-4">
+                            <?php
+                            $faqs = $this->db->query("SELECT * FROM t_faq WHERE id_kategori_faq = " . $kategori['id'] . " ORDER BY judul")->result_array();
+                            if (count($faqs) > 0) {
+                            ?>
+                            <div class="accordion accordion-flush" id="accordionFaqKategori<?= $kategori['id'] ?>">
+                                <?php foreach ($faqs as $index => $faq) : 
+                                    $faq_index++;
+                                ?>
+                                <div class="accordion-item border-bottom mb-2">
+                                    <h2 class="accordion-header" id="faq-heading-<?= $faq_index ?>">
+                                        <button class="accordion-button <?= $index == 0 ? '' : 'collapsed' ?> fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<?= $faq_index ?>" aria-expanded="<?= $index == 0 ? 'true' : 'false' ?>" aria-controls="faq-collapse-<?= $faq_index ?>">
+                                            <?= $faq['judul'] ?>
+                                        </button>
+                                    </h2>
+                                    <div id="faq-collapse-<?= $faq_index ?>" class="accordion-collapse collapse <?= $index == 0 ? 'show' : '' ?>" aria-labelledby="faq-heading-<?= $faq_index ?>" data-bs-parent="#accordionFaqKategori<?= $kategori['id'] ?>">
+                                        <div class="accordion-body text-muted">
+                                            <?= $faq['informasi'] ?>
+                                        </div>
                                     </div>
-                                </li>
-                                <li class="d-flex align-items-start gap-3 border-bottom pb-3">
-                                    <i class="bi bi-check-circle-fill text-primary mt-1"></i>
-                                    <div>
-                                        <strong class="text-dark d-block">BPKB Asli & Fotokopi</strong>
-                                        <span class="text-muted small">Buku Pemilik Kendaraan Bermotor untuk registrasi ulang.</span>
-                                    </div>
-                                </li>
-                                <li class="d-flex align-items-start gap-3 border-bottom pb-3">
-                                    <i class="bi bi-check-circle-fill text-primary mt-1"></i>
-                                    <div>
-                                        <strong class="text-dark d-block">STNK Asli</strong>
-                                        <span class="text-muted small">Dokumen jalan lama yang akan ditarik instansi.</span>
-                                    </div>
-                                </li>
-                                <li class="d-flex align-items-start gap-3">
-                                    <i class="bi bi-check-circle-fill text-primary mt-1"></i>
-                                    <div>
-                                        <strong class="text-dark d-block">Kwitansi Pembelian</strong>
-                                        <span class="text-muted small">Bukti transaksi jual beli sah bermaterai cukup.</span>
-                                    </div>
-                                </li>
-                            </ul>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php } else { ?>
+                                <div class="text-center text-muted py-4">
+                                    <i class="bi bi-info-circle fs-1 text-secondary mb-3 d-block"></i>
+                                    <p class="mb-0">Belum ada FAQ untuk kategori ini.</p>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
     </section>
 
@@ -298,7 +269,7 @@
                                 </div>
                             </div>
                         </div>
-                <?php 
+                    <?php
                     }
                 } else { ?>
                     <div class="col-12 text-center py-5">
@@ -321,13 +292,13 @@
             </div>
             <div class="row g-4">
                 <?php if (isset($getallgaleri) && $getallgaleri->num_rows() > 0) {
-                    foreach ($getallgaleri->result_array() as $galeri) { 
+                    foreach ($getallgaleri->result_array() as $galeri) {
                         $photos_query = $this->model_samsat_galeri->getGaleriFotobyIDGaleri($galeri['id']);
                         $all_photos = [base_url('upload/galeri/') . $galeri['foto']];
                         foreach ($photos_query->result_array() as $p) {
                             $all_photos[] = base_url('upload/galeri/') . $p['foto'];
                         }
-                        ?>
+                ?>
                         <div class="col-md-6 col-lg-3">
                             <div class="gallery-item position-relative overflow-hidden rounded-4 shadow-sm" style="cursor: pointer;" data-photos='<?= json_encode($all_photos) ?>' data-keterangan="<?= htmlspecialchars($galeri['keterangan'], ENT_QUOTES, 'UTF-8') ?>">
                                 <img src="<?= base_url('upload/galeri/') . $galeri['foto'] ?>" class="w-100 h-100 object-fit-cover" alt="<?= $galeri['keterangan'] ?>">
@@ -336,7 +307,7 @@
                                 </div>
                             </div>
                         </div>
-                <?php }
+                    <?php }
                 } else { ?>
                     <div class="col-12 text-center py-5">
                         <div class="text-muted fs-5">Belum ada galeri kegiatan.</div>
@@ -413,10 +384,15 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-start gap-3 mt-4">
-                                    <i class="bi bi-instagram text-warning fs-5"></i>
+                                    <i class="bi bi-headset text-warning fs-5"></i>
                                     <div>
-                                        <h6 class="fw-bold mb-1">Media Sosial</h6>
-                                        <p class="mb-0"><a href="https://instagram.com" target="_blank" class="text-white-50 text-decoration-none small hover-link-white">@samsat.perawang</a></p>
+                                        <h6 class="fw-bold mb-2">Kontak & Media Sosial</h6>
+                                        <ul class="list-unstyled mb-0 small space-y-2">
+                                            <li><i class="bi bi-telephone text-white-50 me-2"></i> <a href="tel:082385685430" class="text-white-50 text-decoration-none hover-link-white">082385685430 (Call Center)</a></li>
+                                            <li><i class="bi bi-instagram text-white-50 me-2"></i> <a href="https://instagram.com/samsat.perawang" target="_blank" class="text-white-50 text-decoration-none hover-link-white">Samsat.perawang</a></li>
+                                            <li><i class="bi bi-facebook text-white-50 me-2"></i> <a href="#" target="_blank" class="text-white-50 text-decoration-none hover-link-white">Samsat Perawang</a></li>
+                                            <li><i class="bi bi-tiktok text-white-50 me-2"></i> <a href="#" target="_blank" class="text-white-50 text-decoration-none hover-link-white">Samsat Perawang</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -435,4 +411,4 @@
         </div>
     </section>
 
-<?php $this->load->view('perawang/footer'); ?>
+    <?php $this->load->view('perawang/footer'); ?>
