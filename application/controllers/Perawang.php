@@ -10,6 +10,7 @@ class Perawang extends CI_Controller
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('Model_Samsat_Berita', 'model_samsat_berita');
 		$this->load->model('Model_Samsat_Galeri', 'model_samsat_galeri');
+		$this->load->model('Model_Samsat_Survei', 'model_samsat_survei');
 		$this->load->library('Lib_func', 'lib_func');
 		$this->load->library('pagination');
 	}
@@ -134,6 +135,19 @@ class Perawang extends CI_Controller
 		);
 		$this->load->view('perawang/header', $data);
 		$this->load->view('perawang/visimisi', $data);
+	}
+
+	public function survei()
+	{
+		$kantor_pelayanan = '3991';
+		$data = array(
+			'title' => 'Survei Kepuasan Masyarakat - Samsat Perawang',
+			'data_survei' => $this->model_samsat_survei->getDataSurvei($kantor_pelayanan),
+			'ikm' => round($this->model_samsat_survei->hitungIKM($kantor_pelayanan), 2),
+			'isak' => round($this->model_samsat_survei->hitungISAK($kantor_pelayanan), 2)
+		);
+		$this->load->view('perawang/header', $data);
+		$this->load->view('perawang/survei', $data);
 	}
 
 	public function detailberita()

@@ -28,13 +28,13 @@ class Model_Samsat_Survei extends CI_Model
         FROM t_survei
 		WHERE tanya1 <> '' AND tanya2 <> '' AND tanya3 <> '' AND tanya4 <> '' AND tanya5 <> '' AND tanya6 <> '' AND tanya7 <> '' AND tanya8 <> '' AND tanya9 <> '' 
         AND tanya21 <> '' AND tanya22 <> '' AND tanya23 <> '' AND tanya24 <> '' AND tanya25 <> ''
-        AND kantor_pelayanan = '$kantor_pelayanan'")->row();
+        AND kantor_pelayanan = '$kantor_pelayanan' AND YEAR(created_date) = YEAR(CURDATE())")->row();
 		return $result;
 	}
 
 	function hitungISAK($kantor_pelayanan)
 	{
-		$getdatasurvei = $this->model_samsat_survei->getDataSurvei($kantor_pelayanan);
+		$getdatasurvei = $this->getDataSurvei($kantor_pelayanan);
 		$total = $getdatasurvei->U21_tertimbang + $getdatasurvei->U22_tertimbang + $getdatasurvei->U23_tertimbang + $getdatasurvei->U24_tertimbang + $getdatasurvei->U25_tertimbang;
 		$hasil = $total * 25;
 		return $hasil;
@@ -42,7 +42,7 @@ class Model_Samsat_Survei extends CI_Model
 
 	function hitungIKM($kantor_pelayanan)
 	{
-		$getdatasurvei = $this->model_samsat_survei->getDataSurvei($kantor_pelayanan);
+		$getdatasurvei = $this->getDataSurvei($kantor_pelayanan);
 		// $jumlah_respon = $this->model_survei->getDataSurvei()->jumlah_respon;
 		$total =
 			$getdatasurvei->U1_tertimbang + $getdatasurvei->U2_tertimbang + $getdatasurvei->U3_tertimbang +
@@ -60,7 +60,7 @@ class Model_Samsat_Survei extends CI_Model
             -- WHERE (pendidikan != '' || pendidikan != NULL) 
 			WHERE tanya1 <> '' AND tanya2 <> '' AND tanya3 <> '' AND tanya4 <> '' AND tanya5 <> '' AND tanya6 <> '' AND tanya7 <> '' AND tanya8 <> '' AND tanya9 <> '' 
             AND tanya21 <> '' AND tanya22 <> '' AND tanya23 <> '' AND tanya24 <> '' AND tanya25 <> ''
-            AND kantor_pelayanan = '$kantor_pelayanan'
+            AND kantor_pelayanan = '$kantor_pelayanan' AND YEAR(created_date) = YEAR(CURDATE())
             GROUP BY pendidikan
             ORDER BY pendidikan = 'SD' ASC,
                 pendidikan = 'SLTP/SMP' ASC,
@@ -77,7 +77,7 @@ class Model_Samsat_Survei extends CI_Model
             FROM t_survei
 			WHERE tanya1 <> '' AND tanya2 <> '' AND tanya3 <> '' AND tanya4 <> '' AND tanya5 <> '' AND tanya6 <> '' AND tanya7 <> '' AND tanya8 <> '' AND tanya9 <> '' 
             AND tanya21 <> '' AND tanya22 <> '' AND tanya23 <> '' AND tanya24 <> '' AND tanya25 <> ''
-            AND kantor_pelayanan = '$kantor_pelayanan'
+            AND kantor_pelayanan = '$kantor_pelayanan' AND YEAR(created_date) = YEAR(CURDATE())
             GROUP BY jenis_kelamin
             ORDER BY jenis_kelamin = 'L' ASC,
                 jenis_kelamin = 'P' ASC");
@@ -91,7 +91,7 @@ class Model_Samsat_Survei extends CI_Model
 			WHERE usia<=25
 			AND tanya1 <> '' AND tanya2 <> '' AND tanya3 <> '' AND tanya4 <> '' AND tanya5 <> '' AND tanya6 <> '' AND tanya7 <> '' AND tanya8 <> '' AND tanya9 <> '' 
 			AND tanya21 <> '' AND tanya22 <> '' AND tanya23 <> '' AND tanya24 <> '' AND tanya25 <> '' 
-            AND kantor_pelayanan = '$kantor_pelayanan'");
+            AND kantor_pelayanan = '$kantor_pelayanan' AND YEAR(created_date) = YEAR(CURDATE())");
 		return $query;
 	}
 
@@ -102,7 +102,7 @@ class Model_Samsat_Survei extends CI_Model
 			WHERE usia>=26 AND usia<=35
 			AND tanya1 <> ''  AND tanya2 <> '' AND tanya3 <> '' AND tanya4 <> '' AND tanya5 <> '' AND tanya6 <> '' AND tanya7 <> '' AND tanya8 <> '' AND tanya9 <> '' 
 			AND tanya21 <> '' AND tanya22 <> '' AND tanya23 <> '' AND tanya24 <> '' AND tanya25 <> '' 
-            AND kantor_pelayanan = '$kantor_pelayanan'");
+            AND kantor_pelayanan = '$kantor_pelayanan' AND YEAR(created_date) = YEAR(CURDATE())");
 		return $query;
 	}
 
@@ -113,7 +113,7 @@ class Model_Samsat_Survei extends CI_Model
 			WHERE usia>=36 and usia<=45
 			AND tanya1 <> ''  AND tanya2 <> '' AND tanya3 <> '' AND tanya4 <> '' AND tanya5 <> '' AND tanya6 <> '' AND tanya7 <> '' AND tanya8 <> '' AND tanya9 <> '' 
 			AND tanya21 <> '' AND tanya22 <> '' AND tanya23 <> '' AND tanya24 <> '' AND tanya25 <> '' 
-            AND kantor_pelayanan = '$kantor_pelayanan'");
+            AND kantor_pelayanan = '$kantor_pelayanan' AND YEAR(created_date) = YEAR(CURDATE())");
 		return $query;
 	}
 
@@ -124,7 +124,7 @@ class Model_Samsat_Survei extends CI_Model
 			WHERE usia>=46 and usia<=55
 			AND tanya1 <> ''  AND tanya2 <> '' AND tanya3 <> '' AND tanya4 <> '' AND tanya5 <> '' AND tanya6 <> '' AND tanya7 <> '' AND tanya8 <> '' AND tanya9 <> '' 
 			AND tanya21 <> '' AND tanya22 <> '' AND tanya23 <> '' AND tanya24 <> '' AND tanya25 <> '' 
-            AND kantor_pelayanan = '$kantor_pelayanan'");
+            AND kantor_pelayanan = '$kantor_pelayanan' AND YEAR(created_date) = YEAR(CURDATE())");
 		return $query;
 	}
 
@@ -135,7 +135,7 @@ class Model_Samsat_Survei extends CI_Model
 			WHERE usia>=56
 			AND tanya1 <> ''  AND tanya2 <> '' AND tanya3 <> '' AND tanya4 <> '' AND tanya5 <> '' AND tanya6 <> '' AND tanya7 <> '' AND tanya8 <> '' AND tanya9 <> '' 
 			AND tanya21 <> '' AND tanya22 <> '' AND tanya23 <> '' AND tanya24 <> '' AND tanya25 <> '' 
-            AND kantor_pelayanan = '$kantor_pelayanan'");
+            AND kantor_pelayanan = '$kantor_pelayanan' AND YEAR(created_date) = YEAR(CURDATE())");
 		return $query;
 	}
 

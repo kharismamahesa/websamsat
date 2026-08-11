@@ -36,7 +36,7 @@
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('perawang') ?>#kontak">Kontak</a></li>
                 </ul>
                 <div class="d-flex gap-2 btn-nav-group">
-                    <a href="https://bapenda.riau.go.id/pelayanan/surveikirim?uptup=3991" target="_blank" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-semibold shadow-sm">
+                    <a href="<?= base_url('perawang/survei') ?>" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-semibold shadow-sm">
                         <i class="bi bi-clipboard2-check me-1"></i> Survei
                     </a>
                     <a href="<?= base_url('perawang') ?>#kontak" class="btn btn-warning btn-sm rounded-pill px-3 fw-semibold text-dark shadow-sm">
